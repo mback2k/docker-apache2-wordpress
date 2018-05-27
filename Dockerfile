@@ -19,6 +19,7 @@ RUN tar xfvz wordpress-${WORDPRESS_VERSION}.tar.gz
 RUN chown root:root -R /var/www/wordpress
 
 RUN chown www-data:www-data -R /var/www/wordpress/wp-content
+RUN tar cfvz wordpress-content.tar.gz wordpress/wp-content
 VOLUME /var/www/wordpress/wp-content
 
 ADD opcache-recommended.ini /etc/php/7.0/cli/conf.d/99-opcache-recommended.ini

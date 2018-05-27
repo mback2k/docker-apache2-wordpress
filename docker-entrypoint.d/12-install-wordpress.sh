@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ -f "${WORDPRESS_DATABASE_PASS_FILE}" ]; then
     WORDPRESS_DATABASE_PASS="$(< "${WORDPRESS_DATABASE_PASS_FILE}")"

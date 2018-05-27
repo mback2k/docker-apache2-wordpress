@@ -6,7 +6,7 @@ RUN apt-get update && \
         php7.0-mysql php7.0-opcache && \
     apt-get clean
 
-RUN a2enmod rewrite expires
+RUN a2enmod rewrite headers env setenvif expires
 
 RUN mkdir -p /var/www
 WORKDIR /var/www

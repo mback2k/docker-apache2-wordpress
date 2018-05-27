@@ -12,7 +12,7 @@ if [ -n "${WORDPRESS_DATABASE_HOST}" ]; then
 if [ -n "${WORDPRESS_DATABASE_NAME}" ]; then
 if [ -n "${WORDPRESS_DATABASE_USER}" ]; then
 if [ -n "${WORDPRESS_DATABASE_PASS}" ]; then
-    runuser -u www-data -s /bin/sh -c 'cd /var/www/wordpress; wp config create \
+    runuser -u www-data -- /bin/sh -c 'cd /var/www/wordpress; wp config create \
         --dbhost="${WORDPRESS_DATABASE_HOST}" --dbname="${WORDPRESS_DATABASE_NAME}" \
         --dbuser="${WORDPRESS_DATABASE_USER}" --dbpass="${WORDPRESS_DATABASE_PASS}" \
         --force --skip-check'
@@ -26,9 +26,9 @@ if [ -n "${WORDPRESS_TITLE}" ]; then
 if [ -n "${WORDPRESS_ADMIN_USER}" ]; then
 if [ -n "${WORDPRESS_ADMIN_PASS}" ]; then
 if [ -n "${WORDPRESS_ADMIN_MAIL}" ]; then
-    runuser -u www-data -s /bin/sh -c 'cd /var/www/wordpress; wp core is-installed'
+    runuser -u www-data -- /bin/sh -c 'cd /var/www/wordpress; wp core is-installed'
     if [ $? -eq 0 ]; then exit 0; fi
-    runuser -u www-data -s /bin/sh -c 'cd /var/www/wordpress; wp core install \
+    runuser -u www-data -- /bin/sh -c 'cd /var/www/wordpress; wp core install \
         --url="${WORDPRESS_URL}" --title="${WORDPRESS_TITLE}" \
         --admin_user="${WORDPRESS_ADMIN_USER}" \
         --admin_password="${WORDPRESS_ADMIN_PASS}" \

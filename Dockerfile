@@ -27,5 +27,8 @@ ADD opcache-recommended.ini /etc/php/7.0/apache2/conf.d/99-opcache-recommended.i
 ENV WORDPRESS_DATABASE_HOST mysql
 ENV WORDPRESS_DATABASE_NAME wordpress
 
+ADD https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar /usr/local/bin/wp
+RUN chmod +x /usr/local/bin/wp
+
 ADD docker-entrypoint.d/ /run/docker-entrypoint.d/
 ADD docker-websites.d/ /run/docker-websites.d/

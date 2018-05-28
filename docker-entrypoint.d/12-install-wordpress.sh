@@ -12,10 +12,10 @@ if [ -n "${WORDPRESS_DATABASE_HOST}" ]; then
 if [ -n "${WORDPRESS_DATABASE_NAME}" ]; then
 if [ -n "${WORDPRESS_DATABASE_USER}" ]; then
 if [ -n "${WORDPRESS_DATABASE_PASS}" ]; then
+    echo "${WORDPRESS_DATABASE_PASS}" | \
     runuser -u www-data -- /bin/sh -c 'cd /var/www/wordpress; wp config create \
         --dbhost="${WORDPRESS_DATABASE_HOST}" --dbname="${WORDPRESS_DATABASE_NAME}" \
-        --dbuser="${WORDPRESS_DATABASE_USER}" --dbpass="${WORDPRESS_DATABASE_PASS}" \
-        --force --skip-check'
+        --dbuser="${WORDPRESS_DATABASE_USER}" --prompt=dbpass --force --skip-check'
 fi
 fi
 fi

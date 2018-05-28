@@ -28,11 +28,12 @@ if [ -n "${WORDPRESS_ADMIN_PASS}" ]; then
 if [ -n "${WORDPRESS_ADMIN_MAIL}" ]; then
     runuser -u www-data -- /bin/sh -c 'cd /var/www/wordpress; wp core is-installed'
     if [ $? -eq 0 ]; then exit 0; fi
+    echo "${WORDPRESS_ADMIN_PASS}" | \
     runuser -u www-data -- /bin/sh -c 'cd /var/www/wordpress; wp core install \
         --url="${WORDPRESS_URL}" --title="${WORDPRESS_TITLE}" \
         --admin_user="${WORDPRESS_ADMIN_USER}" \
-        --admin_password="${WORDPRESS_ADMIN_PASS}" \
-        --admin_email="${WORDPRESS_ADMIN_MAIL}"'
+        --admin_email="${WORDPRESS_ADMIN_MAIL}" \
+        --prompt=admin_password --skip-email'
 fi
 fi
 fi

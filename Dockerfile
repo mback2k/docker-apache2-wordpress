@@ -2,7 +2,7 @@ FROM mback2k/apache2-php
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        php7.0-gd php7.0-zip \
+        php7.0-gd php7.0-curl php7.0-zip \
         php7.0-mysql php7.0-opcache && \
     apt-get clean
 

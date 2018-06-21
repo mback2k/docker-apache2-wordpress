@@ -35,3 +35,5 @@ RUN chmod 0755 /usr/local/bin/wp
 
 ADD docker-entrypoint.d/ /run/docker-entrypoint.d/
 ADD docker-websites.d/ /run/docker-websites.d/
+
+HEALTHCHECK CMD curl http://localhost/wp-admin/admin-ajax.php | grep '^0$' || exit 1

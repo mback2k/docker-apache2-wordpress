@@ -15,7 +15,7 @@ RUN a2enmod rewrite headers env setenvif expires
 RUN mkdir -p /var/www
 WORKDIR /var/www
 
-ARG WORDPRESS_VERSION=4.9.10
+ARG WORDPRESS_VERSION=4.9.13
 
 ADD https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz /var/www
 RUN tar xfvz wordpress-${WORDPRESS_VERSION}.tar.gz

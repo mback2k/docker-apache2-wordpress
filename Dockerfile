@@ -1,9 +1,11 @@
 FROM mback2k/apache2-php
 
+ARG PHP_VERSION=7.2
+
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        php7.0-gd php7.0-curl php7.0-zip \
-        php7.0-mysql php7.0-opcache && \
+        php${PHP_VERSION}-gd php${PHP_VERSION}-curl php${PHP_VERSION}-zip \
+        php${PHP_VERSION}-mysql php${PHP_VERSION}-opcache && \
     apt-get install -y --no-install-recommends \
         msmtp msmtp-mta && \
     apt-get clean
@@ -26,8 +28,8 @@ RUN chmod 640 wordpress-content.tar.gz
 
 VOLUME /var/www/wordpress/wp-content
 
-ADD opcache-recommended.ini /etc/php/7.0/cli/conf.d/99-opcache-recommended.ini
-ADD opcache-recommended.ini /etc/php/7.0/apache2/conf.d/99-opcache-recommended.ini
+ADD opcache-recommended.ini /etc/php/${PHP_VERSION}/cli/conf.d/99-opcache-recommended.ini
+ADD opcache-recommended.ini /etc/php/${PHP_VERSION}/apache2/conf.d/99-opcache-recommended.ini
 
 ENV WORDPRESS_DATABASE_HOST mysql
 ENV WORDPRESS_DATABASE_NAME wordpress

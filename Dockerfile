@@ -40,4 +40,4 @@ RUN chmod 0755 /usr/local/bin/wp
 ADD docker-entrypoint.d/ /run/docker-entrypoint.d/
 ADD docker-websites.d/ /run/docker-websites.d/
 
-HEALTHCHECK CMD curl http://localhost/wp-admin/admin-ajax.php | grep -e '^0$' || killall -0 run-parts || exit 1
+HEALTHCHECK CMD killall -0 run-parts || curl http://localhost/wp-admin/admin-ajax.php | grep -e '^0$' || exit 1
